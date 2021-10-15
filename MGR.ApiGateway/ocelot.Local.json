@@ -1,0 +1,69 @@
+{
+  "Routes": [
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/coffees",
+      "DownstreamPathTemplate": "/api/coffees",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "HttpHandlerOptions": {
+        "UseTracing": true
+      }
+    },
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/coffees/{everything}",
+      "DownstreamPathTemplate": "/api/coffees/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "HttpHandlerOptions": {
+        "UseTracing": true
+      }
+    },
+
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/teas",
+      "DownstreamPathTemplate": "/api/teas",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5004
+        }
+      ],
+      "HttpHandlerOptions": {
+        "UseTracing": true
+      }
+    },
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/teas/{everything}",
+      "DownstreamPathTemplate": "/api/teas/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5004
+        }
+      ],
+      "HttpHandlerOptions": {
+        "UseTracing": true
+      }
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5010"
+  }
+}
