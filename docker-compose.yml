@@ -8,14 +8,14 @@ services:
       dockerfile: MGR.ApiGateway/Dockerfile
 
 
-  demoapi1:
+  coffeeapi:
     image: ${DOCKER_REGISTRY-}coffeeapi
     build:
       context: .
       dockerfile: CoffeeApi/Dockerfile
 
 
-  demoapi2:
+  teaapi:
     image: ${DOCKER_REGISTRY-}teaapi
     build:
       context: .
