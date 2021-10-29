@@ -11,6 +11,10 @@
           "Port": 5002
         }
       ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
       "HttpHandlerOptions": {
         "UseTracing": true
       }

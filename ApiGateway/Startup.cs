@@ -1,13 +1,15 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Logging;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using Ocelot.Tracing.Butterfly;
 
-namespace MGR.ApiGateway
+namespace ApiGateway
 {
     public class Startup
     {
@@ -29,7 +31,17 @@ namespace MGR.ApiGateway
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLogging();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.Authority = Configuration.GetConnectionString("LoginApi");
+                });
+
+            services.AddLogging(options =>
+            {
+                options.AddConsole();
+            });
 
             services.AddOcelot(Configuration);
                 //.AddButterfly(option =>
@@ -47,6 +59,7 @@ namespace MGR.ApiGateway
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                IdentityModelEventSource.ShowPII = true;
             }
 
             await app.UseOcelot();
