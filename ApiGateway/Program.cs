@@ -10,6 +10,7 @@ namespace ApiGateway
             CreateHostBuilder(args).Build().Run();
         }
 
+        //TODO: Use Serilog
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>

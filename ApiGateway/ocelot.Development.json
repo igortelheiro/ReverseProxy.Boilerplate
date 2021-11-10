@@ -11,6 +11,10 @@
           "Port": 80
         }
       ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
       "HttpHandlerOptions": {
         "UseTracing": true
       }
@@ -26,6 +30,10 @@
           "Port": 80
         }
       ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
       "HttpHandlerOptions": {
         "UseTracing": true
       }

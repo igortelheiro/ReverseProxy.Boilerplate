@@ -1,3 +1,4 @@
+using Butterfly.Client.Tracing;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using System.Net.Http;
 
 namespace ApiGateway
 {
@@ -31,6 +33,12 @@ namespace ApiGateway
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging(options =>
+            {
+                options.AddConsole();
+            });
+
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -38,19 +46,9 @@ namespace ApiGateway
                     options.Authority = Configuration.GetConnectionString("LoginApi");
                 });
 
-            services.AddLogging(options =>
-            {
-                options.AddConsole();
-            });
-
             services.AddOcelot(Configuration);
-                //.AddButterfly(option =>
-                //{
-                //    var butterflyUrl = Configuration.GetConnectionString("Butterfly");
 
-                //    option.Service = "Ocelot";
-                //    option.CollectorUrl = butterflyUrl;
-                //});
+            services.AddSingleton(p => new HttpClient(p.GetService<HttpTracingHandler>()));
         }
 
 
