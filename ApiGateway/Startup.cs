@@ -1,4 +1,3 @@
-using Butterfly.Client.Tracing;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,7 +8,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using System.Net.Http;
 
 namespace ApiGateway
 {
@@ -47,8 +45,6 @@ namespace ApiGateway
                 });
 
             services.AddOcelot(Configuration);
-
-            services.AddSingleton(p => new HttpClient(p.GetService<HttpTracingHandler>()));
         }
 
 
