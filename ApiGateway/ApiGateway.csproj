@@ -8,9 +8,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Program.cs~RF21eff9d3.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
+	<PackageReference Include="Serilog" Version="2.10.0" />
+	<PackageReference Include="Serilog.Extensions.Hosting" Version="4.1.2" />
+	<PackageReference Include="Serilog.Sinks.Console" Version="4.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Yarp.ReverseProxy" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="yarp.Local.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="yarp.Sample.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

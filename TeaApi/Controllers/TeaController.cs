@@ -7,7 +7,7 @@ namespace TeaApi.Controllers
 {
     [ApiController]
     [Route("api/teas")]
-    public class WeatherForecastController : ControllerBase
+    public class TeaController : ControllerBase
     {
         private static readonly string[] Teas = new[]
         {

@@ -7,7 +7,7 @@ namespace CoffeeApi.Controllers
 {
     [ApiController]
     [Route("api/coffees")]
-    public class WeatherForecastController : ControllerBase
+    public class CoffeeController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {

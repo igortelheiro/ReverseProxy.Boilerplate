@@ -1,0 +1,36 @@
+{
+  "ReverseProxy": {
+    "Routes": {
+      "coffeApi": {
+        "ClusterId": "coffeeCluster",
+        "Match": {
+          "Path": "/coffees",
+          "Methods": [ "GET" ]
+        }
+      },
+      "teaApi": {
+        "ClusterId": "teaCluster",
+        "Match": {
+          "Path": "/teas",
+          "Methods": [ "GET", "POST" ]
+        }
+      }
+    },
+    "Clusters": {
+      "coffeeCluster": {
+        "Destinations": {
+          "coffee.api": {
+            "Address": "http://localhost:5002/api"
+          }
+        }
+      },
+      "teaCluster": {
+        "Destinations": {
+          "tea.api": {
+            "Address": "http://localhost:5004/api"
+          }
+        }
+      }
+    }
+  }
+}
