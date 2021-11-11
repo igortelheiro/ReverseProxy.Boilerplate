@@ -6,8 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
-using Ocelot.DependencyInjection;
-using Ocelot.Middleware;
 
 namespace ApiGateway
 {
@@ -43,20 +41,16 @@ namespace ApiGateway
                     options.RequireHttpsMetadata = false;
                     options.Authority = Configuration.GetConnectionString("LoginApi");
                 });
-
-            services.AddOcelot(Configuration);
         }
 
 
-        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 IdentityModelEventSource.ShowPII = true;
             }
-
-            await app.UseOcelot();
         }
     }
 }
